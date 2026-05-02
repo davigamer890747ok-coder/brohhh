@@ -1,16 +1,11 @@
-```
+```bash
 # Compiled and build artifacts
 *.pyc
 __pycache__/
-*.o
-*.obj
-build/
-dist/
 
 # Dependencies
 .venv/
 venv/
-node_modules/
 
 # Logs and temp files
 *.log
@@ -25,4 +20,24 @@ node_modules/
 # Editors
 .vscode/
 .idea/
+
+# Build directories
+build/
+dist/
+target/
+
+# Python specific
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.coverage
+htmlcov/
+.mypy_cache/
+.pytest_cache/
+.tox/
+
+# System files
+.DS_Store
+Thumbs.db
 ```
