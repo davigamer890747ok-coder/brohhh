@@ -1,37 +1,46 @@
 import PyInstaller.__main__
 import os
-import shutil
-
-# Nome do arquivo principal da interface
-MAIN_SCRIPT = "steam_gui.py"
-APP_NAME = "PacoteSteam_DavizinScript"
+import sys
 
 def build_exe():
-    print(f"🚀 Iniciando compilação de {APP_NAME}...")
+    # Nome do seu script principal com a interface
+    # VERIFIQUE se o nome do arquivo da interface é este mesmo (ex: steam_gui.py ou main.py)
+    main_script = 'steam_gui.py' 
     
-    # Limpar pastas antigas se existirem
-    if os.path.exists("build"):
-        shutil.rmtree("build")
-    if os.path.exists("dist"):
-        shutil.rmtree("dist")
-        
-    PyInstaller.__main__.run([
-        MAIN_SCRIPT,
-        "--name=" + APP_NAME,
-        "--onefile",  # Cria um único arquivo .exe
-        "--noconsole",  # Não mostra janela de console (ideal para apps GUI)
-        "--windowed",  # Modo janela
-        "--clean",  # Limpa cache antes de compilar
-        "--add-data=assets;assets" if os.path.exists("assets") else None,  # Inclui pasta de assets se existir
-        "--hidden-import=customtkinter",
-        "--hidden-import=PIL",
-        "--hidden-import=requests",
-        "--icon=NONE",  # Se tiver um ícone .ico, coloque o caminho aqui ex: "--icon=logo.ico"
-    ])
+    if not os.path.exists(main_script):
+        print(f"❌ ERRO: O arquivo '{main_script}' não foi encontrado na pasta atual.")
+        print("Verifique se o nome do arquivo da interface está correto.")
+        return
 
-    print("\n✅ Compilação concluída!")
-    print(f"📦 Seu executável está em: dist/{APP_NAME}.exe")
-    print("\n💡 Dica: Você pode copiar este arquivo .exe para qualquer computador com Windows e ele funcionará sem precisar instalar Python.")
+    print(f"🚀 Iniciando compilação de {main_script}...")
+    print("⏳ Isso pode levar alguns minutos. Aguarde...")
 
-if __name__ == "__main__":
+    # Lista de argumentos segura (sem None)
+    args = [
+        main_script,
+        '--name=PacoteSteam_DavizinScript',
+        '--onefile',          # Cria um único arquivo .exe
+        '--windowed',         # Não mostra a tela preta do console
+        '--noconfirm',        # Não pede confirmação para sobrescrever
+        '--clean',            # Limpa cache anterior antes de compilar
+        '--hidden-import=customtkinter',
+        '--hidden-import=PIL',
+        '--hidden-import=requests',
+        '--hidden-import=json',
+        '--hidden-import=threading',
+    ]
+
+    # Adiciona ícone apenas se o arquivo existir
+    icon_file = 'logo.ico' # Se tiver um ícone, coloque ele na pasta e mude o nome aqui
+    if os.path.exists(icon_file):
+        args.append(f'--icon={icon_file}')
+    
+    try:
+        PyInstaller.__main__.run(args)
+        print("\n✅ SUCESSO! Seu executável está na pasta 'dist'.")
+        print(f"📦 Arquivo: dist\\PacoteSteam_DavizinScript.exe")
+    except Exception as e:
+        print(f"\n❌ ERRO NA COMPILAÇÃO: {e}")
+
+if __name__ == '__main__':
     build_exe()
