@@ -23,7 +23,7 @@ wheels/
 .installed.cfg
 *.egg
 
-# PyInstaller
+# PyInstaller (Importante para o seu .exe)
 *.manifest
 *.spec
 
