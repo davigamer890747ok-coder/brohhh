@@ -1,226 +1,195 @@
-# Steam Tools 🎮
+# 🎮 Pacote Steam + de Mil 100 Jogos - Davizin_Script TM
 
-Uma coleção completa de ferramentas úteis para usuários da Steam.
+Interface desktop moderna com tema escuro para gerenciamento e instalação automática de jogos Steam e ferramentas Lua.
 
 ## ✨ Funcionalidades
 
-### Principais Recursos
-- 🔍 **Buscar jogos** por nome com resultados ilimitados
-- 📋 **Ver detalhes completos** de um jogo (por App ID)
-- 👥 **Ver jogadores atuais** em tempo real
-- 👤 **Informações de usuário** Steam
-- 💰 **Verificar descontos** e histórico de preços
-- 🔥 **Top jogos populares** baseado em jogadores ativos
-- 🆕 **Atualizações recentes** de jogos
-- ⚖️ **Comparar múltiplos jogos** lado a lado
-- 💾 **Exportar dados** para JSON
+- **Interface Moderna**: Tema escuro profissional inspirado em gerenciadores de biblioteca de jogos
+- **1107+ Jogos**: Catálogo completo com jogos populares e DLCs
+- **Steam Tools**: Instalação automática via SteamCMD
+- **Lua Tools**: Gerenciamento de ferramentas Lua via LuaRocks
+- **Categorias**: Filtragem por gênero (Ação, RPG, Aventura, etc.)
+- **Busca**: Pesquisa rápida de jogos
+- **Status**: Acompanhamento de jogos instalados
+- **Exportação**: Exporta lista de jogos para JSON
+- **Automático**: Instalação totalmente automatizada
 
-### Informações Detalhadas dos Jogos
-- Nome, tipo e descrição
-- Preço atual e descontos ativos
-- Plataformas suportadas (Windows, Mac, Linux)
-- Categorias e gêneros
-- Data de lançamento
-- Pontuação Metacritic
-- Número de recomendações
+## 📋 Requisitos
 
-## 📦 Instalação
+### Sistema Operacional
+- Windows 10/11
+- Linux (Ubuntu, Debian, Fedora)
+- macOS
 
-### Requisitos
-- Python 3.6+
-- Biblioteca `requests`
-
+### Dependências Python
 ```bash
-pip install requests
+pip install customtkinter packaging
 ```
 
-## 🚀 Uso
-
-### Modo Interativo
+### Dependências do Sistema
 ```bash
-python steam_tools.py
-```
-ou
-```bash
-python steam_tools.py --interactive
-```
+# Ubuntu/Debian
+sudo apt-get install python3-tk tk wget
 
-### Linha de Comando
+# Fedora
+sudo dnf install python3-tkinter wget
 
-**Buscar jogos:**
-```bash
-python steam_tools.py --search "Counter"
-python steam_tools.py --search "Half-Life" --limit 20
+# Windows
+# Python já inclui tkinter
 ```
 
-**Ver detalhes de um jogo:**
+## 🚀 Instalação
+
+### 1. Clonar Repositório
 ```bash
-python steam_tools.py --app 730
-python steam_tools.py --app 1091500  # Cyberpunk 2077
+git clone <seu-repositorio>
+cd <diretorio-do-projeto>
 ```
 
-**Ver jogadores atuais:**
+### 2. Instalar Dependências
 ```bash
-python steam_tools.py --players 730
-python steam_tools.py --players 570  # Dota 2
+pip install -r requirements.txt
 ```
 
-**Informações de usuário:**
+### 3. Executar Interface
 ```bash
-python steam_tools.py --user "SEU_STEAM_ID"
+python steam_gui.py
 ```
 
-**Verificar descontos:**
+## 🎯 Uso da Interface
+
+### Barra Lateral Esquerda
+
+**Categorias:**
+- Todos os Jogos (1107)
+- Ação, Aventura, RPG, Estratégia
+- Corrida, Esportes, Simulação
+- Terror, Indie, Multiplayer, Outros
+
+**Opções:**
+- 🟢 **INSTALAR SELECIONADO**: Instala jogos selecionados
+- ⚫ **VER INFORMAÇÕES**: Detalhes do jogo
+- 🔴 **REMOVER JOGO**: Remove da lista de instalados
+
+**Filtros:**
+- Campo de busca: "Pesquisar jogo..."
+- Checkbox: "Mostrar apenas instalados"
+
+### Área Principal
+
+**Tabela de Jogos:**
+- **#**: Número do jogo
+- **JOGO**: Nome com ícone
+- **GÊNERO**: Categoria do jogo
+- **TAMANHO**: Espaço necessário
+- **STATUS**: Instalado (verde) / Não instalado (cinza)
+
+### Cabeçalho
+- Título: "PACOTE STEAM + DE MIL 100 JOGOS"
+- Subtítulo: "DAVIZIN_SCRIPT TM"
+- Total de jogos: Contador em tempo real
+
+### Rodapé
+- Copyright: "DAVIZIN_SCRIPT TM - Todos os direitos reservados."
+- Botões: ATUALIZAR LISTA | EXPORTAR LISTA | SAIR
+
+## 🔧 Linha de Comando
+
+### Instalar Manifest
 ```bash
-python steam_tools.py --deals 730
+python manifest_installer.py --install nome_do_manifest
 ```
 
-**Top jogos populares:**
+### Listar Manifests
 ```bash
-python steam_tools.py --top
-python steam_tools.py --top 5  # Mostrar apenas top 5
+python manifest_installer.py --list
 ```
 
-**Atualizações recentes:**
+### Gerar Manifest em Massa
 ```bash
-python steam_tools.py --updates
+python manifest_installer.py --generate-bulk 1 100000 steam_100k
 ```
 
-**Comparar jogos:**
+### Modo Automático
 ```bash
-python steam_tools.py --compare 730,570,440
-python steam_tools.py --compare 1091500,1245620,1086940
+python manifest_installer.py --install meu_pacote --auto
 ```
 
-**Exportar dados para JSON:**
+### Ver Histórico
 ```bash
-python steam_tools.py --export 730
-python steam_tools.py --export 730 --output cs2_details.json
+python manifest_installer.py --installed
 ```
 
-**Ajuda:**
-```bash
-python steam_tools.py --help
-```
+## 📦 Estrutura de Arquivos
 
-## 📊 Exemplos Práticos
-
-### Counter-Strike 2 (App ID: 730)
-```bash
-# Ver detalhes completos
-python steam_tools.py --app 730
-
-# Ver jogadores atuais
-python steam_tools.py --players 730
-
-# Verificar descontos
-python steam_tools.py --deals 730
-
-# Exportar dados
-python steam_tools.py --export 730 --output cs2.json
-```
-
-### Buscar jogos específicos
-```bash
-# Buscar jogos com "Half-Life"
-python steam_tools.py --search "Half-Life"
-
-# Buscar jogos com "Elden" (limitado a 5 resultados)
-python steam_tools.py --search "Elden" --limit 5
-```
-
-### Comparar múltiplos jogos
-```bash
-# Comparar CS2, Dota 2 e Team Fortress 2
-python steam_tools.py --compare 730,570,440
-
-# Comparar jogos AAA modernos
-python steam_tools.py --compare 1091500,1245620,1086940
-```
-
-## 🎯 Menu Interativo
-
-No modo interativo, você terá acesso a:
-
-1. 🔍 Buscar jogos por nome
-2. 📋 Ver detalhes de um jogo (por App ID)
-3. 👥 Ver jogadores atuais
-4. 👤 Informações de usuário Steam
-5. 💰 Verificar descontos
-6. 🔥 Top jogos populares
-7. 🆕 Atualizações recentes
-8. ⚖️ Comparar jogos
-9. 💾 Exportar dados para JSON
-10. 🚪 Sair
-
-## 🔗 Links Úteis
-
-- [Steam Web API](https://steamcommunity.com/dev)
-- [SteamDB](https://steamdb.info/)
-- [IsThereAnyDeal](https://isthereanydeal.com/)
-- [Steam Calculator](https://steamcalculator.com/)
-- [Lista de App IDs](https://steamdb.info/apps/)
-
-## 🎮 App IDs Populares
-
-| Jogo | App ID |
-|------|--------|
-| Counter-Strike 2 | 730 |
-| Dota 2 | 570 |
-| Team Fortress 2 | 440 |
-| Grand Theft Auto V | 271590 |
-| Cyberpunk 2077 | 1091500 |
-| Elden Ring | 1245620 |
-| Baldur's Gate 3 | 1086940 |
-| Apex Legends | 1172470 |
-| PUBG: BATTLEGROUNDS | 578080 |
-| Rust | 252490 |
-
-## 🛠️ Desenvolvimento
-
-### Estrutura do Projeto
 ```
 /workspace/
-├── steam_tools.py    # Script principal
-├── README.md         # Este arquivo
-└── *.json            # Arquivos exportados (opcional)
+├── steam_gui.py              # Interface gráfica principal
+├── manifest_installer.py     # Instalador de manifests
+├── manifests/                # Diretório de manifests JSON
+│   ├── essential_games.json
+│   ├── dev_tools.json
+│   └── steam_100k.json
+├── steamcmd/                 # SteamCMD (instalado automaticamente)
+├── installed_games.json      # Registro de jogos instalados
+└── installation_history.json # Histórico de instalações
 ```
 
-### Adicionando Novas Funcionalidades
+## 🎮 Exemplo de Manifest JSON
 
-Para adicionar novas funcionalidades, estenda a classe `SteamTools`:
-
-```python
-class SteamTools:
-    def __init__(self):
-        # ...
-    
-    def nova_funcionalidade(self, params):
-        # Sua implementação aqui
-        pass
+```json
+{
+  "name": "garrys_mod_complete",
+  "description": "Garry's Mod com todos os DLCs",
+  "apps": [4000],
+  "dlcs": [223090, 489830, 489831, 489832, 489833, 489834, 489835],
+  "tools": ["luajit", "lfs"]
+}
 ```
+
+## 🛠️ Recursos Técnicos
+
+### Steam Tools
+- **SteamCMD**: Download e instalação de jogos
+- **Suporte a DLCs**: Instalação automática de DLCs associadas
+- **Login Anônimo**: Para jogos free-to-play e demos
+
+### Lua Tools
+- **LuaRocks**: Gerenciador de pacotes Lua
+- **Ferramentas Incluídas**:
+  - LuaJIT (Just-In-Time compiler)
+  - LuaFileSystem (LFS)
+  - LPeg (Parsing Expression Grammar)
+  - LuaSocket (Rede)
+  - LuaSec (SSL/TLS)
+
+## 📸 Screenshots
+
+A interface apresenta:
+- Tema escuro (#0f0f1a, #1a1a2e, #16213e)
+- Cores de destaque: Verde (#00ff88), Azul (#0066cc)
+- Ícones emoji para jogos
+- Status colorido (verde = instalado, cinza = não instalado)
+
+## 🔐 Segurança
+
+- SteamCMD baixado oficialmente da Valve
+- LuaRocks da fonte oficial
+- Sem armazenamento de credenciais
+- Instalação em diretório local
 
 ## 📝 Licença
 
-MIT License - Sinta-se livre para usar, modificar e distribuir!
+**DAVIZIN_SCRIPT TM** - Todos os direitos reservados.
 
-## 🤝 Contribuição
+## 👤 Autor
 
-Contribuições são bem-vindas! Sinta-se à vontade para:
-- Reportar bugs
-- Sugerir novas funcionalidades
-- Enviar pull requests
+**Davizin_Script TM**
 
-## ⚠️ Avisos
+## 🆘 Suporte
 
-- Algumas funcionalidades requerem conexão com a internet
-- A API da Steam pode ter limitações de taxa (rate limiting)
-- Para informações completas de perfil de usuário, é necessária uma API Key da Steam
-- Dados de jogadores podem não estar disponíveis para todos os jogos
+Para problemas ou sugestões, abra uma issue no repositório.
 
 ---
 
-Criado com ❤️ para a comunidade Steam
-
-**Versão:** 2.0  
-**Última atualização:** 2024
+**Divirta-se jogando! 🎮**
