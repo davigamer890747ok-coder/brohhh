@@ -40,4 +40,7 @@ htmlcov/
 # System files
 .DS_Store
 Thumbs.db
-```
+```"*.spec" 
+"dist/" 
+"build/" 
+"__pycache__/" 
